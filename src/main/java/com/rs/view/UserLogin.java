@@ -64,6 +64,5 @@ public class UserLogin extends JFrame {
         this.setTitle("Welcome to Restaurant Manager!");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
-
     }
 }
