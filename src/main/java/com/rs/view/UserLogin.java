@@ -8,12 +8,14 @@ package com.rs.view;
 
 
 
+import com.rs.model.User;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
-
-public class UserLogin extends JFrame {
+public class UserLogin extends JFrame implements ActionListener{
 
     private JLabel jl1, jl2,jl3;
     private JTextField jtx1;
@@ -30,8 +32,12 @@ public class UserLogin extends JFrame {
 
         jtx1 = new JTextField(10);
         jpf1 = new JPasswordField(10);
+
         jb1 = new JButton("Login");
+        jb1.addActionListener(this);
         jb2 = new JButton("Cancel");
+        jb2.addActionListener(this);
+
         jp1 = new JPanel();
         jp2 = new JPanel();
         jp3 = new JPanel();
@@ -64,5 +70,24 @@ public class UserLogin extends JFrame {
         this.setTitle("Welcome to Restaurant Manager!");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == jb1){
+            String u = this.jtx1.getText().trim();
+            String p = new String(this.jpf1.getPassword());
+
+            User us = new User();
+            String result = us.checkUser(u,p);
+            System.out.println(result);
+            if(result.equals("Vice-President") || result.equals("Manager")){
+                new MainFrame();
+                this.dispose();
+            }
+
+        }else if(e.getSource() == jb2){
+            this.jtx1.setText("");
+            this.jpf1.setText("");
+        }
     }
 }
