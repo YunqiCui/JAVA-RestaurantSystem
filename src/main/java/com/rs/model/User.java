@@ -14,7 +14,7 @@ public class User {
         String occup = "";
         String paras[] = {uid, password};
         sh = new SqlHelper();
-        rs = sh.querySearch(occupsearch, paras);
+        rs = sh.query(occupsearch, paras);
         try {
             if (rs.next()) {
                 occup = rs.getString(1);

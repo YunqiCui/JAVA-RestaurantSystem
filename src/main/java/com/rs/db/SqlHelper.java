@@ -25,7 +25,7 @@ public class SqlHelper {
     }
 
 
-    public ResultSet querySearch(String sql, String[] paras){
+    public ResultSet query(String sql, String[] paras){
 
         try {
             ps = ct.prepareStatement(sql);

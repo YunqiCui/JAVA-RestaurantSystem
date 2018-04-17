@@ -50,6 +50,7 @@ public class MainFrame extends JFrame implements ActionListener, MouseListener {
     public MainFrame() {
 
         System.setProperty("apple.laf.useScreenMenuBar", "true");
+        this.ct = this.getContentPane();
         this.initMenubar();
         this.initToolbar();
         this.initStatusbar();
@@ -60,18 +61,12 @@ public class MainFrame extends JFrame implements ActionListener, MouseListener {
         width = Toolkit.getDefaultToolkit().getScreenSize().width;
         height = Toolkit.getDefaultToolkit().getScreenSize().height;
 
-        ct = this.getContentPane();
-        ct.add(jtb, "North");
-        ct.add(jsp, "Center");
-        jtb.setFloatable(false);
-        ct.add(jp5, "South");
-
         this.setJMenuBar(jmb);
         this.setTitle("Restaurant Manager");
         this.setSize(width, height - 30);
         this.setLocation(400, 400);
-        this.setVisible(true);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setVisible(true);
     }
 
     public void initMenubar() {
@@ -148,6 +143,8 @@ public class MainFrame extends JFrame implements ActionListener, MouseListener {
         jtb.add(jb8);
         jtb.add(jb9);
         jtb.add(jb10);
+        jtb.setFloatable(false);
+        this.ct.add(jtb, "North");
     }
 
     public void initmiddleArea() {
@@ -219,6 +216,7 @@ public class MainFrame extends JFrame implements ActionListener, MouseListener {
         cl = new CardLayout();
         jp3 = new JPanel(cl);
         ImagePanel imagePanel = null;
+        EmpInfoPanel eip = new EmpInfoPanel();
 
         try {
             Image im = ImageIO.read(new File("src/main/resources/images/view/background/bg-1920.jpg"));
@@ -228,7 +226,9 @@ public class MainFrame extends JFrame implements ActionListener, MouseListener {
             e.printStackTrace();
         }
 
+
         jp3.add(imagePanel, "0");
+        jp3.add(eip,"1");
 
         jp4 = new JPanel(new BorderLayout());
         jp4.add(jp2, "West");
@@ -237,6 +237,7 @@ public class MainFrame extends JFrame implements ActionListener, MouseListener {
         jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, jp1, jp4);
         jsp.setDividerLocation(365);
         jsp.setDividerSize(0);
+        this.ct.add(jsp, "Center");
     }
 
     public void initStatusbar() {
@@ -256,6 +257,7 @@ public class MainFrame extends JFrame implements ActionListener, MouseListener {
 
         t = new Timer(1000, this);
         t.start();
+        this.ct.add(jp5, "South");
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -263,9 +265,10 @@ public class MainFrame extends JFrame implements ActionListener, MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-//        if(e.getSource()==p1_lab2){
-//            this.cl.show(jp3,"1");
-//        }else if(e.getSource()==p1_lab3){
+        if(e.getSource()==p1_lab2){
+            this.cl.show(jp3,"1");
+        }
+//        else if(e.getSource()==p1_lab3){
 //            this.cl.show(jp3,"2");
 //        }else if(e.getSource()==p1_lab4){
 //            this.cl.show(jp3,"3");

@@ -1,4 +1,3 @@
-
 CREATE TABLE `employee` (
   `empno` integer(16) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `ftname` varchar(255),
